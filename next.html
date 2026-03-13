@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinema Rating and Feedback</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url('https://c4.wallpaperflare.com/wallpaper/436/228/997/movies-mad-max-the-dark-knight-interstellar-movie-wallpaper-preview.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        /* Carousel Styles */
+        .carousel-container {
+            position: relative;
+            max-width: 600px;
+            margin: 40px auto;
+            overflow: hidden;
+        }
+
+        .carousel-slide {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        /* Rating and Feedback */
+        .rating-feedback {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .stars {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .stars input {
+            display: none;
+        }
+
+        .stars label {
+            font-size: 30px;
+            color: #ddd;
+            cursor: pointer;
+        }
+
+        .stars input:checked ~ label,
+        .stars label:hover,
+        .stars label:hover ~ label {
+            color: gold;
+        }
+
+        .feedback-form textarea {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .feedback-form button {
+            padding: 10px 20px;
+            background-color: gold;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* User Feedbacks */
+        .previous-feedbacks {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 20px auto;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .feedback-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .feedback-item:last-child {
+            border-bottom: none;
+        }
+
+        .user-name {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .user-rating {
+            color: gold;
+        }
+
+        .user-feedback {
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body background="https://wallpapers.com/images/hd/movie-pictures-zcv37gqy4acx7s2w.jpg">
+
+    <h1>Welcome to RPMoviez Cinema</h1>
+
+    <!-- Carousel -->
+    <div class="carousel-container">
+        <div class="carousel-slide">
+            <img src="https://m.media-amazon.com/images/M/MV5BNmJhMTc5NDEtN2NkOC00Njc3LWJiMzgtZjhjZWNhZDhmZTE0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Cinema 1" width="400" height="400">
+            <img src="https://m.media-amazon.com/images/M/MV5BMzUwZTM1ZDEtZGViOC00YmUxLWEwNWQtNGIyMzE2NWZkYzUyXkEyXkFqcGc@._V1_QL75_UX480_.jpg" alt="Cinema 2" width="400" height="400">
+            <img src="https://images-cdn.ubuy.co.in/66ad666d33ec4a4bc2725526-the-avengers-movie-poster-b-11-x-17.jpg" alt="Cinema 3" width="400" height="400"">
+        </div>
+        <span class="prev">&#10094;</span>
+        <span class="next">&#10095;</span>
+    </div>
+   <a href="form.html" class="btn btn-primary btn-lg">Book Now</a>
+
+    <!-- Previous User Feedbacks Section -->
+    <div class="previous-feedbacks">
+        <h3>What Others Are Saying</h3>
+        <div class="feedback-item">
+            <span class="user-name">John Doe</span> <span class="user-rating">★★★★★</span>
+            <p class="user-feedback">"Amazing cinema experience! Loved the sound and screen quality."</p>
+        </div>
+        <div class="feedback-item">
+            <span class="user-name">Jane Smith</span> <span class="user-rating">★★★★</span>
+            <p class="user-feedback">"The movie was great, but the seating could be more comfortable."</p>
+        </div>
+        <div class="feedback-item">
+            <span class="user-name">Michael Brown</span> <span class="user-rating">★★★</span>
+            <p class="user-feedback">"Good overall experience, but the snacks were overpriced."</p>
+        </div>
+    </div>
+
+    <script>
+        const prev = document.querySelector('.prev');
+        const next = document.querySelector('.next');
+        const carouselSlide = document.querySelector('.carousel-slide');
+        let counter = 0;
+
+        next.addEventListener('click', () => {
+            if (counter < 2) {
+                counter++;
+                carouselSlide.style.transform = `translateX(${-counter * 100}%)`;
+            }
+        });
+
+        prev.addEventListener('click', () => {
+            if (counter > 0) {
+                counter--;
+                carouselSlide.style.transform = `translateX(${-counter * 100}%)`;
+            }
+        });
+    </script>
+</body>
+</html>
+

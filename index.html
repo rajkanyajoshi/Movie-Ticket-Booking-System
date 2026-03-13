@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cinema Welcome</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+      /* General Styles */
+      body {
+          margin: 0;
+          padding: 0;
+          font-family: Arial, sans-serif;
+          background: url('https://c4.wallpaperflare.com/wallpaper/436/228/997/movies-mad-max-the-dark-knight-interstellar-movie-wallpaper-preview.jpg') no-repeat center center fixed;
+          background-size: cover;
+      }
+
+      h1 {
+          text-align: center;
+          color: #fff;
+          padding: 20px;
+          background: rgba(0, 0, 0, 0.6);
+      }
+
+      /* Carousel Styles */
+      .carousel-container {
+          position: relative;
+          max-width: 600px;
+          margin: 40px auto;
+          overflow: hidden;
+      }
+
+      .carousel-slide {
+          display: flex;
+          transition: transform 0.5s ease-in-out;
+      }
+
+      .carousel-slide img {
+          display: none;
+          width: 300px;
+	height:400px;
+          border-radius: 10px;
+      }
+
+      .carousel-slide img.active {
+          display: block;
+      }
+
+      .prev, .next {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          background-color: rgba(0, 0, 0, 0.5);
+          color: #fff;
+          padding: 10px;
+          cursor: pointer;
+          border-radius: 50%;
+          z-index: 10;
+          font-size: 24px;
+          border: none;
+          width: 40px;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+      }
+
+      .prev:hover, .next:hover {
+          background-color: rgba(255, 255, 255, 0.7);
+          color: #000;
+      }
+
+      .prev {
+          left: 10px;
+      }
+
+      .next {
+          right: 10px;
+      }
+
+      .btn {
+          margin-top: 20px;
+      }
+  </style>
+</head>
+
+<body>
+  <div class="container text-center mt-5">
+      <h1 class="display-4">Welcome to RPMoviez Cinema</h1>
+      <div class="carousel-container">
+          <div class="carousel-slide">
+              <img src="https://m.media-amazon.com/images/M/MV5BNmJhMTc5NDEtN2NkOC00Njc3LWJiMzgtZjhjZWNhZDhmZTE0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" class="active" alt="Cinema 1">
+              <img src="https://m.media-amazon.com/images/M/MV5BMzUwZTM1ZDEtZGViOC00YmUxLWEwNWQtNGIyMzE2NWZkYzUyXkEyXkFqcGc@._V1_QL75_UX480_.jpg" alt="Cinema 2">
+              <img src="https://images-cdn.ubuy.co.in/66ad666d33ec4a4bc2725526-the-avengers-movie-poster-b-11-x-17.jpg" alt="Cinema 3">
+          </div>
+          <button class="prev" onclick="slideshow(-1)">&#10094;</button>
+          <button class="next" onclick="slideshow(1)">&#10095;</button>
+      </div>
+      <a href="form.html" class="btn btn-primary btn-lg">Book Now</a>
+  </div>
+  
+  <script>
+      var pics = [
+          "https://m.media-amazon.com/images/M/MV5BNmJhMTc5NDEtN2NkOC00Njc3LWJiMzgtZjhjZWNhZDhmZTE0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+          "https://m.media-amazon.com/images/M/MV5BMzUwZTM1ZDEtZGViOC00YmUxLWEwNWQtNGIyMzE2NWZkYzUyXkEyXkFqcGc@._V1_QL75_UX480_.jpg",
+          "https://images-cdn.ubuy.co.in/66ad666d33ec4a4bc2725526-the-avengers-movie-poster-b-11-x-17.jpg"
+      ];
+      var i = 0;
+
+      function slideshow(status) {
+          i += status;
+
+          if (i > pics.length - 1) {
+              i = 0;
+          }
+          if (i < 0) {
+              i = pics.length - 1;
+          }
+
+          updateCarousel();
+      }
+
+      function updateCarousel() {
+          var images = document.querySelectorAll(".carousel-slide img");
+          images.forEach((img, index) => {
+              img.classList.remove("active");
+              if (index === i) {
+                  img.classList.add("active");
+              }
+          });
+      }
+
+      window.onload = function () {
+          updateCarousel();
+      };
+  </script>
+</body>
+</html>
+
